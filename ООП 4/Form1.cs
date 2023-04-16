@@ -15,26 +15,33 @@ namespace ООП_4
     {
         Container container = new Container();// создаем контейнер хранящий круги
         Graphics g;// создаем объект графики
-        CCircleCreation Creation;// создаем объект-конвеер кругов
+        ShapeCreation Creation;// создаем объект-конвеер кругов
         Bitmap map;// создаем битмап "мап"
         Boolean ctrlpress = false;// флажок зажатия контрола
+        int typeOfShape = 0;
         public Form1()
         {
             InitializeComponent();
             map = new Bitmap(paintField.Width, paintField.Height);// определяем битмап
-            Creation = new CCircleCreation(Graphics.FromImage(map));// определяем конвеер кругов
+            Creation = new ShapeCreation(Graphics.FromImage(map));// определяем конвеер кругов
         }
 
         
         private void paintField_Paint(object sender, PaintEventArgs e)// функция отрисовки кругов
         {
-            container.drawCircles();
+            Graphics.FromImage(map).Clear(Color.LightGray);
+            container.drawshapes();
             paintField.Image = map;
         }
 
         private void paintField_MouseClick(object sender, MouseEventArgs e)//функция нажатия мышкой для добавления на поле круга или его выделения
         {
-            container.AddOrSelectShape(Creation.createCCircle(e.Location));
+            if (typeOfShape == 0) 
+                container.AddOrSelectShape(Creation.createCCircle(e.Location));
+            else if (typeOfShape == 1)
+                    container.AddOrSelectShape(Creation.createSquare(e.Location));
+            else if (typeOfShape == 2)
+                container.AddOrSelectShape(Creation.createTriangle(e.Location));
             paintField.Invalidate();
         }
 
@@ -46,10 +53,36 @@ namespace ООП_4
                 ctrlpress = true;
                 container.ctrlPressed = !container.ctrlPressed;
             }
-            if (e.KeyCode == Keys.Delete)//при нажатии делит удаляются выделенные круги
+            if (e.KeyCode == Keys.Delete)
             {
                 Graphics.FromImage(map).Clear(Color.LightGray);
                 container.delSelected();
+            }
+            if (e.KeyCode == Keys.A)
+            {
+                container.moveShape(-5, 0);
+            }
+            if (e.KeyCode == Keys.S)
+            {
+                container.moveShape(0, 5);
+            }
+            if (e.KeyCode == Keys.D)
+            {
+                container.moveShape(5, 0);
+            }
+            if (e.KeyCode == Keys.W)
+            {
+                container.moveShape(0, -5);
+            }
+
+            if (e.KeyCode == Keys.E)
+            {
+                container.upSizeShape(1);
+            }
+
+            if (e.KeyCode == Keys.Q)
+            {
+                container.upSizeShape(-1);
             }
         }
 
@@ -71,7 +104,7 @@ namespace ООП_4
         private void deleteAll_Click(object sender, EventArgs e)// функция нажатия на кнопку "Удалить все"
         {
             Graphics.FromImage(map).Clear(Color.LightGray);
-            container.delCircles();
+            container.delshapes();
         }
 
         private void selectAll_CheckedChanged(object sender, EventArgs e)
@@ -82,6 +115,24 @@ namespace ООП_4
         private void paintField_Click(object sender, EventArgs e)
         {
 
+        }
+
+        private void кругToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            typeOfShape = 0;
+            toolStripDropDownButton1.Image = global::ООП_4.Properties.Resources.Circle;
+        }
+
+        private void квадратToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            typeOfShape = 1;
+            toolStripDropDownButton1.Image = global::ООП_4.Properties.Resources.Square;
+        }
+
+        private void треугольникToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            typeOfShape = 2;
+            toolStripDropDownButton1.Image = global::ООП_4.Properties.Resources.Triangle;
         }
     }
     

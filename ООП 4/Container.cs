@@ -4,40 +4,41 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Drawing;
+using Laba4OOP.src;
 
 namespace ООП_4
 {
     class Container
     {
-        private List<CCIrcle> circles;
+        private List<Shape> shapes;
         public bool ctrlPressed = false;
         public bool selectMany = false;
         public Container()
         {
-            circles = new List<CCIrcle>();
+            shapes = new List<Shape>();
         }
 
-        public void drawCircles()
+        public void drawshapes()
         {
-            foreach (CCIrcle circle in circles)
-                circle.Draw();
+            foreach (Shape shape in shapes)
+                shape.Draw();
         }
 
         public void unSelectAll()
         {
-            foreach (CCIrcle circle in circles)
+            foreach (Shape shape in shapes)
             {
-                circle.unSelect();
+                shape.unSelect();
             }
         }
         public bool isSelect(Point point)
         {
             bool res = false;
-            foreach (CCIrcle circle in circles)
+            foreach (Shape shape in shapes)
             {
-                if (circle.selected == false && circle.checkPointPosition(point) == true)
+                if (shape.getSelect() == false && shape.checkPointPosition(point) == true)
                 {
-                    circle.selected = true;
+                    shape.changeSelect();
                     res = true;
                     if (selectMany == false)
                         return res;
@@ -48,32 +49,54 @@ namespace ООП_4
         public void delSelected()
         {
             int i = 0;
-            for (; i < circles.Count;)
+            for (; i < shapes.Count;)
             {
-                if (circles[i].selected == true)
+                if (shapes[i].getSelect() == true)
                 {
-                    circles.RemoveAt(i);
+                    shapes.RemoveAt(i);
                     continue;
                 }
                 i++;
             }
         }
-        public void delCircles()
+        public void delshapes()
         {
-            for (int i = 0; i < circles.Count;)
+            for (int i = 0; i < shapes.Count;)
             {
-                    circles.RemoveAt(i);
+                    shapes.RemoveAt(i);
             }
         }
-        public void AddOrSelectShape(CCIrcle circle)
+        public void AddOrSelectShape(Shape shape)
         {
             if (ctrlPressed == false)
                 unSelectAll();
-            if (isSelect(circle.getPosition())) { return; }
+            if (isSelect(shape.getPosition())) { return; }
             if (ctrlPressed == false)
             {
-                circle.changeSelect();
-                circles.Add(circle);
+                shape.changeSelect();
+                shapes.Add(shape);
+            }
+        }
+
+        public void moveShape(int x, int y)
+        {
+            foreach (Shape shape in shapes)
+            {
+                if (shape.getSelect() == true)
+                {
+                    shape.move(x, y);
+                }
+            }
+        }
+
+        public void upSizeShape(int s)
+        {
+            foreach (Shape shape in shapes)
+            {
+                if (shape.getSelect() == true)
+                {
+                    shape.upSize(s);
+                }
             }
         }
     }

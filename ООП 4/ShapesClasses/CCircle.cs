@@ -4,14 +4,15 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Drawing;
+using Laba4OOP.src;
 
 namespace ООП_4
 {
-    public class CCIrcle
+    public class CCIrcle : Shape
     {
-        private Point p;
-        private const int R = 40;
-        public Boolean selected;
+        protected Point p;
+        protected int R = 40;
+        protected Boolean selected;
         Graphics g;
         public CCIrcle(Point click, Graphics graphics)
         {
@@ -39,6 +40,10 @@ namespace ООП_4
             return p;
         }
 
+        public bool getSelect()
+        {
+            return selected;
+        }
         public void unSelect()
         {
             selected = false;
@@ -55,6 +60,17 @@ namespace ООП_4
                 return true;
             }
             return false;
+        }
+
+        public void move(int x, int y)
+        {
+            p.X += x;
+            p.Y += y;
+        }
+
+        public void upSize(int s)
+        {
+            R += s;
         }
     }
 }
