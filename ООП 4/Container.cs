@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Drawing;
 using Laba4OOP.src;
+using System.Security.Cryptography.X509Certificates;
 
 namespace ООП_4
 {
@@ -78,8 +79,20 @@ namespace ООП_4
             }
         }
 
-        public void moveShape(int x, int y)
+        public void moveShape(int x, int y, int width, int height)
         {
+            foreach (Shape shape in shapes)
+            {
+                if (shape.getSelect() == true)
+                {
+                    if (shape.getPosition().X + shape.getRadius() / 2 + x < width &&
+                        shape.getPosition().X - shape.getRadius() / 2 + x > 0 &&
+                        shape.getPosition().Y + shape.getRadius() / 2 + y < height &&
+                        shape.getPosition().Y - shape.getRadius() / 2 + y > 0)
+                        continue;
+                    else return;
+                }
+            }
             foreach (Shape shape in shapes)
             {
                 if (shape.getSelect() == true)
@@ -87,15 +100,51 @@ namespace ООП_4
                     shape.move(x, y);
                 }
             }
+            
         }
 
-        public void upSizeShape(int s)
+        public void upSizeShape(int s, int width, int height)
+        {
+
+            foreach (Shape shape in shapes)
+            {
+                if (shape.getSelect() == true)
+                {
+                    if (shape.getPosition().X + shape.getRadius() / 2 + s < width &&
+                        shape.getPosition().X - shape.getRadius() / 2 + s > 0 &&
+                        shape.getPosition().Y + shape.getRadius() / 2 + s < height &&
+                        shape.getPosition().Y - shape.getRadius() / 2 + s > 0)
+                        continue;
+                    else return;
+                }
+            }
+            foreach (Shape shape in shapes)
+            {
+                if (shape.getSelect() == true)
+                {
+                    shape.upSize(s);
+                }
+            }
+        }
+
+        public void downSizeShape(int s, int width, int height)
         {
             foreach (Shape shape in shapes)
             {
                 if (shape.getSelect() == true)
                 {
                     shape.upSize(s);
+                }
+            }
+        }
+        public void changeColorShape(string Color)
+        {
+            foreach (Shape shape in shapes)
+            {
+                if (shape.getSelect() == true)
+                {
+                    shape.changeColor(Color);
+                    
                 }
             }
         }

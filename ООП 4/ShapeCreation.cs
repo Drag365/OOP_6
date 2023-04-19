@@ -16,19 +16,19 @@ namespace ООП_4
             g = graphics;
         }
 
-        public CCIrcle createCCircle(Point click)
+        public CCIrcle createCCircle(Point click, string Colored)
         {
-            return new CCIrcle(click, g);
+            return new CCIrcle(click, g, Colored);
         }
 
-        public Square createSquare(Point click)
+        public Square createSquare(Point click, string Colored)
         {
-            return new Square(click, g);
+            return new Square(click, g, Colored);
         }
 
-        public Triangle createTriangle(Point click)
+        public Triangle createTriangle(Point click, string Colored)
         {
-            return new Triangle(click, g);
+            return new Triangle(click, g, Colored);
         }
     }
 }

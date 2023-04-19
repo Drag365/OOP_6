@@ -22,5 +22,9 @@ namespace Laba4OOP.src
         void move(int x, int y);
 
         void upSize(int s);
+
+        int getRadius();
+
+        void changeColor(string Color);
     }
 }

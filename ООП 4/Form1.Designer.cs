@@ -33,17 +33,23 @@ namespace ООП_4
             this.deleteAll = new System.Windows.Forms.Button();
             this.selectAll = new System.Windows.Forms.CheckBox();
             this.panel1 = new System.Windows.Forms.Panel();
+            this.paintField = new System.Windows.Forms.PictureBox();
             this.panel2 = new System.Windows.Forms.Panel();
             this.toolStrip1 = new System.Windows.Forms.ToolStrip();
             this.toolStripDropDownButton1 = new System.Windows.Forms.ToolStripDropDownButton();
             this.кругToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.квадратToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.треугольникToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.paintField = new System.Windows.Forms.PictureBox();
+            this.toolStripDropDownButton2 = new System.Windows.Forms.ToolStripDropDownButton();
+            this.GreenOption = new System.Windows.Forms.ToolStripMenuItem();
+            this.BlackOption = new System.Windows.Forms.ToolStripMenuItem();
+            this.PurpleOption = new System.Windows.Forms.ToolStripMenuItem();
+            this.BrownOption = new System.Windows.Forms.ToolStripMenuItem();
+            this.BlueOption = new System.Windows.Forms.ToolStripMenuItem();
             this.panel1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.paintField)).BeginInit();
             this.panel2.SuspendLayout();
             this.toolStrip1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.paintField)).BeginInit();
             this.SuspendLayout();
             // 
             // CtrlCheck
@@ -90,21 +96,35 @@ namespace ООП_4
             this.panel1.Size = new System.Drawing.Size(617, 381);
             this.panel1.TabIndex = 3;
             // 
+            // paintField
+            // 
+            this.paintField.BackColor = System.Drawing.Color.LightGray;
+            this.paintField.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.paintField.Location = new System.Drawing.Point(0, 0);
+            this.paintField.Name = "paintField";
+            this.paintField.Size = new System.Drawing.Size(615, 379);
+            this.paintField.TabIndex = 0;
+            this.paintField.TabStop = false;
+            this.paintField.Click += new System.EventHandler(this.paintField_Click);
+            this.paintField.Paint += new System.Windows.Forms.PaintEventHandler(this.paintField_Paint);
+            this.paintField.MouseClick += new System.Windows.Forms.MouseEventHandler(this.paintField_MouseClick);
+            // 
             // panel2
             // 
             this.panel2.Controls.Add(this.toolStrip1);
-            this.panel2.Location = new System.Drawing.Point(12, 6);
+            this.panel2.Location = new System.Drawing.Point(4, 6);
             this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(142, 380);
+            this.panel2.Size = new System.Drawing.Size(168, 380);
             this.panel2.TabIndex = 4;
             // 
             // toolStrip1
             // 
             this.toolStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.toolStripDropDownButton1});
+            this.toolStripDropDownButton1,
+            this.toolStripDropDownButton2});
             this.toolStrip1.Location = new System.Drawing.Point(0, 0);
             this.toolStrip1.Name = "toolStrip1";
-            this.toolStrip1.Size = new System.Drawing.Size(142, 57);
+            this.toolStrip1.Size = new System.Drawing.Size(168, 57);
             this.toolStrip1.TabIndex = 0;
             this.toolStrip1.Text = "toolStrip1";
             // 
@@ -143,29 +163,68 @@ namespace ООП_4
             this.треугольникToolStripMenuItem.Text = "Треугольник";
             this.треугольникToolStripMenuItem.Click += new System.EventHandler(this.треугольникToolStripMenuItem_Click);
             // 
-            // paintField
+            // toolStripDropDownButton2
             // 
-            this.paintField.BackColor = System.Drawing.Color.LightGray;
-            this.paintField.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.paintField.Location = new System.Drawing.Point(0, 0);
-            this.paintField.Name = "paintField";
-            this.paintField.Size = new System.Drawing.Size(615, 379);
-            this.paintField.TabIndex = 0;
-            this.paintField.TabStop = false;
-            this.paintField.Click += new System.EventHandler(this.paintField_Click);
-            this.paintField.Paint += new System.Windows.Forms.PaintEventHandler(this.paintField_Paint);
-            this.paintField.MouseClick += new System.Windows.Forms.MouseEventHandler(this.paintField_MouseClick);
+            this.toolStripDropDownButton2.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.toolStripDropDownButton2.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.GreenOption,
+            this.BlackOption,
+            this.PurpleOption,
+            this.BrownOption,
+            this.BlueOption});
+            this.toolStripDropDownButton2.Image = global::ООП_4.Properties.Resources.Fill;
+            this.toolStripDropDownButton2.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
+            this.toolStripDropDownButton2.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.toolStripDropDownButton2.Name = "toolStripDropDownButton2";
+            this.toolStripDropDownButton2.Size = new System.Drawing.Size(63, 54);
+            this.toolStripDropDownButton2.Text = "toolStripDropDownButton2";
+            this.toolStripDropDownButton2.Click += new System.EventHandler(this.toolStripDropDownButton2_Click);
+            // 
+            // GreenOption
+            // 
+            this.GreenOption.Name = "GreenOption";
+            this.GreenOption.Size = new System.Drawing.Size(180, 22);
+            this.GreenOption.Text = "Зеленый";
+            this.GreenOption.Click += new System.EventHandler(this.GreenOption_Click);
+            // 
+            // BlackOption
+            // 
+            this.BlackOption.Name = "BlackOption";
+            this.BlackOption.Size = new System.Drawing.Size(180, 22);
+            this.BlackOption.Text = "Черный";
+            this.BlackOption.Click += new System.EventHandler(this.BlackOption_Click);
+            // 
+            // PurpleOption
+            // 
+            this.PurpleOption.Name = "PurpleOption";
+            this.PurpleOption.Size = new System.Drawing.Size(180, 22);
+            this.PurpleOption.Text = "Фиолетовый";
+            this.PurpleOption.Click += new System.EventHandler(this.PurpleOption_Click);
+            // 
+            // BrownOption
+            // 
+            this.BrownOption.Name = "BrownOption";
+            this.BrownOption.Size = new System.Drawing.Size(180, 22);
+            this.BrownOption.Text = "Красный";
+            this.BrownOption.Click += new System.EventHandler(this.BrownOption_Click);
+            // 
+            // BlueOption
+            // 
+            this.BlueOption.Name = "BlueOption";
+            this.BlueOption.Size = new System.Drawing.Size(180, 22);
+            this.BlueOption.Text = "Синий";
+            this.BlueOption.Click += new System.EventHandler(this.BlueOption_Click);
             // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 450);
-            this.Controls.Add(this.panel2);
             this.Controls.Add(this.selectAll);
             this.Controls.Add(this.deleteAll);
             this.Controls.Add(this.CtrlCheck);
             this.Controls.Add(this.panel1);
+            this.Controls.Add(this.panel2);
             this.ImeMode = System.Windows.Forms.ImeMode.Off;
             this.KeyPreview = true;
             this.Name = "Form1";
@@ -173,11 +232,11 @@ namespace ООП_4
             this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.Form1_KeyDown);
             this.KeyUp += new System.Windows.Forms.KeyEventHandler(this.Form1_KeyUp);
             this.panel1.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.paintField)).EndInit();
             this.panel2.ResumeLayout(false);
             this.panel2.PerformLayout();
             this.toolStrip1.ResumeLayout(false);
             this.toolStrip1.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.paintField)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -196,6 +255,12 @@ namespace ООП_4
         private System.Windows.Forms.ToolStripMenuItem кругToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem квадратToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem треугольникToolStripMenuItem;
+        private System.Windows.Forms.ToolStripDropDownButton toolStripDropDownButton2;
+        private System.Windows.Forms.ToolStripMenuItem GreenOption;
+        private System.Windows.Forms.ToolStripMenuItem BlackOption;
+        private System.Windows.Forms.ToolStripMenuItem PurpleOption;
+        private System.Windows.Forms.ToolStripMenuItem BrownOption;
+        private System.Windows.Forms.ToolStripMenuItem BlueOption;
     }
 }
 

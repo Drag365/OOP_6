@@ -19,6 +19,7 @@ namespace ООП_4
         Bitmap map;// создаем битмап "мап"
         Boolean ctrlpress = false;// флажок зажатия контрола
         int typeOfShape = 0;
+        string Colored = "Blue";
         public Form1()
         {
             InitializeComponent();
@@ -26,8 +27,8 @@ namespace ООП_4
             Creation = new ShapeCreation(Graphics.FromImage(map));// определяем конвеер кругов
         }
 
-        
-        private void paintField_Paint(object sender, PaintEventArgs e)// функция отрисовки кругов
+
+        protected void paintField_Paint(object sender, PaintEventArgs e)// функция отрисовки кругов
         {
             Graphics.FromImage(map).Clear(Color.LightGray);
             container.drawshapes();
@@ -37,11 +38,11 @@ namespace ООП_4
         private void paintField_MouseClick(object sender, MouseEventArgs e)//функция нажатия мышкой для добавления на поле круга или его выделения
         {
             if (typeOfShape == 0) 
-                container.AddOrSelectShape(Creation.createCCircle(e.Location));
+                container.AddOrSelectShape(Creation.createCCircle(e.Location, Colored));
             else if (typeOfShape == 1)
-                    container.AddOrSelectShape(Creation.createSquare(e.Location));
+                    container.AddOrSelectShape(Creation.createSquare(e.Location, Colored));
             else if (typeOfShape == 2)
-                container.AddOrSelectShape(Creation.createTriangle(e.Location));
+                container.AddOrSelectShape(Creation.createTriangle(e.Location, Colored));
             paintField.Invalidate();
         }
 
@@ -60,29 +61,30 @@ namespace ООП_4
             }
             if (e.KeyCode == Keys.A)
             {
-                container.moveShape(-5, 0);
+                
+                container.moveShape(-5, 0, panel1.Width, panel1.Height);
             }
             if (e.KeyCode == Keys.S)
             {
-                container.moveShape(0, 5);
+                container.moveShape(0, 5, panel1.Width, panel1.Height);
             }
             if (e.KeyCode == Keys.D)
             {
-                container.moveShape(5, 0);
+                container.moveShape(5, 0, panel1.Width, panel1.Height);
             }
             if (e.KeyCode == Keys.W)
             {
-                container.moveShape(0, -5);
+                container.moveShape(0, -5, panel1.Width, panel1.Height);
             }
 
             if (e.KeyCode == Keys.E)
             {
-                container.upSizeShape(1);
+                container.upSizeShape(1, panel1.Width, panel1.Height);
             }
 
             if (e.KeyCode == Keys.Q)
             {
-                container.upSizeShape(-1);
+                container.downSizeShape(-1, panel1.Width, panel1.Height);
             }
         }
 
@@ -133,6 +135,41 @@ namespace ООП_4
         {
             typeOfShape = 2;
             toolStripDropDownButton1.Image = global::ООП_4.Properties.Resources.Triangle;
+        }
+
+        private void toolStripDropDownButton2_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void GreenOption_Click(object sender, EventArgs e)
+        {
+            container.changeColorShape("Green");
+            Colored = "Green";
+        }
+
+        private void BlackOption_Click(object sender, EventArgs e)
+        {
+            container.changeColorShape("Black");
+            Colored = "Black";
+        }
+
+        private void PurpleOption_Click(object sender, EventArgs e)
+        {
+            container.changeColorShape("Purple");
+            Colored = "Purple";
+        }
+
+        private void BrownOption_Click(object sender, EventArgs e)
+        {
+            container.changeColorShape("Brown");
+            Colored = "Brown";
+        }
+
+        private void BlueOption_Click(object sender, EventArgs e)
+        {
+            container.changeColorShape("Blue");
+            Colored = "Blue";
         }
     }
     
