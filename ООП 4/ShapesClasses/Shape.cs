@@ -7,24 +7,63 @@ using System.Threading.Tasks;
 
 namespace Laba4OOP.src
 {
-    interface Shape
+    abstract public class Shape
     {
-        void Draw();
-        void changeSelect();
-        bool checkPointPosition(Point point);
+        protected Graphics g;
+        protected Point p;
+        protected int R = 40;
+        protected Boolean selected;
+        protected string Colored = "Blue";
+        abstract public void Draw();
+        public void changeSelect()
+        {
+            selected = !selected;
+        }
+        public bool checkPointPosition(Point point)
+        {
+            double len = Math.Sqrt(Math.Pow(point.X - p.X, 2) + Math.Pow(point.Y - p.Y, 2));
+            if (len < R / 2)
+            {
+                return true;
+            }
+            return false;
+        }
 
-        Point getPosition();
+        public Point getPosition()
+        {
+            return p;
+        }
 
-        void unSelect();
+        public int getRadius()
+        {
+            return R;
+        }
 
-        bool getSelect();
+        public bool getSelect()
+        {
+            return selected;
+        }
 
-        void move(int x, int y);
+        public void unSelect()
+        {
+            selected = false;
+        }
 
-        void upSize(int s);
 
-        int getRadius();
+        public void move(int x, int y)
+        {
+            p.X += x;
+            p.Y += y;
+        }
 
-        void changeColor(string Color);
+        public void upSize(int s)
+        {
+            R += s;
+        }
+
+        public void changeColor(string Color)
+        {
+            Colored = Color;
+        }
     }
 }

@@ -81,6 +81,7 @@ namespace ООП_4
 
         public void moveShape(int x, int y, int width, int height)
         {
+
             foreach (Shape shape in shapes)
             {
                 if (shape.getSelect() == true)

@@ -88,6 +88,10 @@ namespace ООП_4
             }
         }
 
+        public int width()
+        {
+            return panel1.Width;
+        }
         private void CtrlCheck_CheckedChanged(object sender, EventArgs e)//если мы выделели чекбокс "контрол зажат", то меняем значение флажка 
         {
             container.ctrlPressed = !container.ctrlPressed;
